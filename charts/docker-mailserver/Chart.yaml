@@ -2,18 +2,18 @@ apiVersion: v2
 appVersion: "14.0.0"
 description: A fullstack but simple mailserver (smtp, imap, antispam, antivirus, ssl...) using Docker.
 name: docker-mailserver
-version: 4.1.4
+version: 4.1.5
 sources:
-- https://github.com/docker-mailserver/docker-mailserver-helm
+  - https://github.com/docker-mailserver/docker-mailserver-helm
 maintainers:
-- name: funkypenguin
-  email: davidy@funkypenguin.co.nz
+  - name: funkypenguin
+    email: davidy@funkypenguin.co.nz
 keywords:
-- mailserver
-- postfix
-- dovecot
-- amavis
-- imap
+  - mailserver
+  - postfix
+  - dovecot
+  - amavis
+  - imap
 home: https://github.com/funkypenguin/helm-docker-mailserver
 icon: https://avatars.githubusercontent.com/u/76868633?s=400&v=4
 

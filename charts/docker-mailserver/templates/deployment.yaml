@@ -70,6 +70,12 @@ spec:
             secretName: {{ .Values.certificate }}
       {{- end }}
 
+      {{- if .Values.vpn.enabled }}
+        - name: wireguard-config
+          secret:
+            secretName: {{ .Values.vpn.secretName }}
+      {{- end }}
+
         # PVCs
     {{- range $name, $pvc := .Values.persistent_volume_claims }}
       {{- if $pvc.enabled }}
@@ -278,4 +284,20 @@ spec:
               mountPath: {{ $persistence.mountPath }}
           {{- end }}
         {{- end }}
+{{- end }}
+
+{{- if .Values.vpn.enabled }}
+        - name: wireguard-vpn
+          image: {{ .Values.vpn.image.name }}:{{ . Values.vpn.image.tag }}
+          imagePullPolicy: {{ .Values.vpn.image.pullPolicy }}
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_MODULE
+            allowPrivilegeEscalation: true
+            readOnlyRootFilesystem: false
+          volumeMounts:
+            - name: wireguard-config
+              mountPath: /config/wg_confs
 {{- end }}
