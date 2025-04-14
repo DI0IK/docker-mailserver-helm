@@ -6,13 +6,12 @@ on:
       - master
       - main # assume that the branch name may change in future
     paths:
-      - 'charts/**'
-      - '.github/**'
+      - "charts/**"
+      - ".github/**"
   workflow_dispatch:
 
 jobs:
   publish-chart:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -30,4 +29,3 @@ jobs:
         uses: helm/chart-releaser-action@v1.7.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
